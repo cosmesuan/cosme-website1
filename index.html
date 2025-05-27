@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login & Signup Form</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div id="alert-container"></div>
+
+  <div class="tabs">
+    <button class="tab-button active" onclick="switchTab('login', event)">Login</button>
+    <button class="tab-button" onclick="switchTab('signup', event)">Signup</button>
+  </div>
+
+  <form id="login-form" onsubmit="handleLogin(event)">
+    <label for="login-email">Email:</label>
+    <input type="email" id="login-email" required />
+    <label for="login-password">Password:</label>
+    <div class="password-field">
+      <input type="password" id="login-password" required />
+      <button type="button" onclick="togglePassword('login-password', this)">👁️</button>
+    </div>
+    <button class="submit-btn" type="submit">Login</button>
+  </form>
+
+  <form id="signup-form" class="hidden" onsubmit="handleSignup(event)">
+    <label for="signup-name">Name:</label>
+    <input type="text" id="signup-name" required />
+    <label for="signup-email">Email:</label>
+    <input type="email" id="signup-email" required />
+    
+    <label for="signup-password">Password:</label>
+    <div class="password-field">
+      <input type="password" id="signup-password" required oninput="analyzePassword(); checkPasswordMatch();" />
+      <button type="button" onclick="togglePassword('signup-password', this)">👁️</button>
+    </div>
+
+    <div id="password-strength" class="hidden">
+      <div id="strength-fill"></div>
+      <div id="strength-feedback"></div>
+    </div>
+
+    <ul id="password-requirements">
+      <li id="req-length">At least 8 characters</li>
+      <li id="req-upper">At least one uppercase letter</li>
+      <li id="req-lower">At least one lowercase letter</li>
+      <li id="req-number">At least one number</li>
+      <li id="req-special">At least one special character</li>
+    </ul>
+
+    <label for="confirm-password">Confirm Password:</label>
+    <input type="password" id="confirm-password" required oninput="checkPasswordMatch()" />
+    <div id="password-match" class="hidden"></div>
+
+    <button class="submit-btn" type="submit">Sign Up</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
